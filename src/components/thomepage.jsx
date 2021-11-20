@@ -19,11 +19,7 @@ let Thomepage = () => {
     div.classList.add("class-modal");
 
     div.innerHTML = `<h3>Add Class</h3>
-    <div className="input" style="width: 70%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    align-content: space-around;">
+    <div className="input" style="width: 70%; display: flex; align-items: center; justify-content: space-between; align-content: space-around;">
       Class Name: <input class="name" type="text" />
     </div>
     <div className="input" style="width: 70%; display: flex; align-items: center; justify-content: space-between; align-content: space-around;">
