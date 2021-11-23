@@ -4,29 +4,28 @@ import firebase from "../firebase";
 import { Link } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-let Tdetails = () => {
-  
+let Sdetails = () => {
   const db = firebase.firestore();
 
-  function submitTeacherDetails() {
+  function submitStudentDetails() {
     let Id = document.querySelector(".id");
     let Name = document.querySelector(".name");
     let Email = document.querySelector(".email");
-    let Subject = document.querySelector(".subject");
+    let Class = document.querySelector(".myclass");
 
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log(user);
-        db.collection("teachers")
+        db.collection("students")
           .doc(user.email)
           .set(
             {
-              id: Id.value,
+              eno: Id.value,
               name: Name.value,
               email: Email.value,
+              class: Class.value,
               subjects: [],
-              classes: [],
             },
             { merge: true }
           );
@@ -54,7 +53,7 @@ let Tdetails = () => {
                 <input
                   type="text"
                   class="id"
-                  placeholder="Enter your Employee ID"
+                  placeholder="Enter your Admission Number"
                 />{" "}
               </div>
               <div className="input">
@@ -73,19 +72,19 @@ let Tdetails = () => {
                   placeholder="Enter your Email ID"
                 />{" "}
               </div>
-              {/* <div className="input">
+              <div className="input">
                 {" "}
                 <input
                   type="text"
-                  class="subject"
-                  placeholder="Enter your Subject Name"
+                  class="myclass"
+                  placeholder="Enter your Class"
                 />{" "}
-              </div> */}
+              </div>
               <div className="input">
                 {" "}
                 <Link
-                  to="../teacher"
-                  onClick={submitTeacherDetails}
+                  to="../student"
+                  onClick={submitStudentDetails}
                   className="btn btn-outline-light"
                 >
                   Submit Details
@@ -99,4 +98,4 @@ let Tdetails = () => {
   );
 };
 
-export default Tdetails;
+export default Sdetails;

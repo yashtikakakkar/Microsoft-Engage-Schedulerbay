@@ -1,23 +1,35 @@
 import "./home.css";
 import logo from "./logo.png";
 import { signInWithGoogle, auth } from "../firebase";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import { Link } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { Redirect } from "react";
+import { authContext } from "../authProvider";
+
 
 let Home = () => {
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      console.log(user);
-    });
-  }, []);
-
   const [role, setRole] = useState("");
+  
   useEffect(() => {
-    console.log(role);
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user);
+        if (role=="teacher")
+          <Redirect to="/teacherDetails" />
+        if (role=="student")
+          <Redirect to="/studentDetails" />
+      }
+    });
   });
+
+
+  // let user = useContext(authContext);
 
   return (
     <>
+    {/* {user ? <Redirect to="/teacherDetails" /> : ""} */}
       <div className="main-div">
         <div className="nav top">
           <div className="nav-content">
@@ -57,7 +69,6 @@ let Home = () => {
             <p>Now schedule your hybrid classes with ease</p>
             <div className="buttons">
               Join now as a
-              <Link to={"/teacher"}>
                 <button
                   onClick={() => {
                     signInWithGoogle();
@@ -68,9 +79,7 @@ let Home = () => {
                 >
                   Teacher
                 </button>
-              </Link>
               or a
-              <Link to={"/student"}>
                 <button
                   onClick={() => {
                     signInWithGoogle();
@@ -82,7 +91,6 @@ let Home = () => {
                 >
                   Student
                 </button>
-              </Link>{" "}
             </div>
           </div>
         </div>
