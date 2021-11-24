@@ -1,7 +1,13 @@
 .t-details {
   height: calc(100vh - 70px);
   width: 100%;
-  background-color: #7b45d1;
+  background: rgb(60, 0, 149);
+  background: linear-gradient(
+    180deg,
+    rgba(60, 0, 149, 1) 15%,
+    rgba(57, 77, 219, 1) 55%,
+    rgba(0, 212, 255, 1) 100%
+  );
   top: 70px;
   position: absolute;
   display: flex;
@@ -10,7 +16,7 @@
 }
 
 .detail-modal {
-    background-color: rgba(72, 11, 151, 0.63);
+    background-color: rgba(143, 77, 230, 0.281);
     height: 35rem;
     width: 35rem;
     position: relative;

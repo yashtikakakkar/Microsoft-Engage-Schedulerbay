@@ -1,7 +1,105 @@
 import "./subject.css";
 import logo from "./logo.png";
+import firebase from "../firebase";
+import { useEffect, useState } from "react";
 
 let Subject = () => {
+  const db = firebase.firestore();
+  let uid = "9WiD75L6R";
+
+  const [className, setClassName] = useState("");
+  const [allowedCap, setAllowedCap] = useState(0);
+  const [type, setType] = useState("");
+  const [subject, setSubject] = useState("");
+  const [mon, setMon] = useState("");
+  const [tues, setTues] = useState("");
+  const [wed, setWed] = useState("");
+  const [thurs, setThurs] = useState("");
+  const [fri, setFri] = useState("");
+  const [sat, setSat] = useState("");
+  const days = ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"];
+
+  useEffect(() => {
+    db.collection("classes")
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          if (doc.id === uid) {
+            setClassName(doc.data().className);
+            setType(doc.data().classType);
+            setSubject(doc.data().subject);
+            setAllowedCap(doc.data().allowedCapacity);
+          }
+        });
+      });
+
+    db.collection("classes")
+      .doc(uid)
+      .collection("timetable")
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          if (doc.id === uid) {
+            setMon(doc.data().Monday);
+            setTues(doc.data().Tuesday);
+            setWed(doc.data().Wednesday);
+            setThurs(doc.data().Thursday);
+            setFri(doc.data().Friday);
+            setSat(doc.data().Saturday);
+          }
+        });
+      });
+  }, []);
+
+  function checkAvailability() {
+    let date = document.querySelector(".date");
+    let vaccine = document.querySelector(".vaccine");
+
+    let today = new Date();
+    let given = new Date(date.value);
+    let week = new Date();
+    week.setDate(week.getDate() + 7);
+
+    console.log(allowedCap);
+
+    if (today < given && given < week) {
+      if (vaccine.checked) {
+        let day = days[given.getDay()];
+        console.log(day);
+        if (
+          (day == "mon" && mon != "") ||
+          (day == "tues" && tues != "") ||
+          (day == "wed" && wed != "") ||
+          (day == "thurs" && thurs != "") ||
+          (day == "fri" && fri != "") ||
+          (day == "sat" && sat != "")
+        ) {
+          alert(
+            "Offline " +
+              subject +
+              " " +
+              type +
+              " for " +
+              given.getDate() +
+              "/" +
+              given.getMonth() +
+              "/" +
+              given.getFullYear() +
+              " booked successfully! Kindly bring the hard copy of vaccination certificate to allow entry."
+          );
+        } else {
+          alert("No slot available for that day");
+        }
+      } else {
+        alert(
+          "Both the vaccine doses are compulsory to attend offline classes."
+        );
+      }
+    } else {
+      alert("Please select a date within the week.");
+    }
+  }
+
   return (
     <>
       <div className="subject-div">
@@ -14,77 +112,66 @@ let Subject = () => {
             </div>
             <hr />
           </div>
-          <div className="subject-content">
-            <div className="form">
-              <form>
-                <div class="form-row col-md-6">
-                  <div class="col-md-4 mb-3">
-                    <label for="validationServer01">First name</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="validationServer01"
-                      placeholder="First name"
-                      value="Mark"
-                      contentEditable="true"
-                      required
-                    />
+          <div className="class-content">
+            <h2>
+              C L A S S &gt; {className} - {subject} {type}
+            </h2>
+            <h6>Joining Code: {uid}</h6>
+            <div className="class-inner">
+              <div className="class-details">
+                <h4>TimeTable</h4>
+                <table>
+                  <thead>
+                    <th>Day</th>
+                    <th>Time</th>
+                  </thead>
+                  <tr>
+                    <td>Monday</td>
+                    <td>{mon}</td>
+                  </tr>
+                  <tr>
+                    <td>Tuesday</td>
+                    <td>{tues}</td>
+                  </tr>
+                  <tr>
+                    <td>Wednesday</td>
+                    <td>{wed}</td>
+                  </tr>
+                  <tr>
+                    <td>Thursday</td>
+                    <td>{thurs}</td>
+                  </tr>
+                  <tr>
+                    <td>Friday</td>
+                    <td>{fri}</td>
+                  </tr>
+                  <tr>
+                    <td>Saturday</td>
+                    <td>{sat}</td>
+                  </tr>
+                </table>
+              </div>
+              <div className="subject-form">
+                <div className="form-div">
+                  <h4>Attend Class in Offline Mode</h4>
+                  <div className="input2">
+                    Date:{" "}
+                    <input class="date" type="date" placeholder="dd-mm-yyyy" />
                   </div>
-                  <div class="col-md-4 mb-3">
-                    <label for="validationServer02">Last name</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="validationServer02"
-                      placeholder="Last name"
-                      value="Otto"
-                      required
-                    />
+                  <div className="input2">
+                    Both Vaccine Doses Taken:{" "}
+                    <input class="vaccine" type="checkbox" />
                   </div>
-                  <div class="col-md-4 mb-3">
-                    <label for="validationServerUsername">Subject</label>
-                    <div class="input-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="validationServerUsername"
-                        placeholder="Username"
-                        aria-describedby="inputGroupPrepend3"
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-row col-md-6">
-                  <div class="col-md-6 mb-3">
-                    <label for="inputState">State</label>
-                    <select id="inputState" class="form-control">
-                      <option selected>Choose...</option>
-                      <option>...</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="invalidCheck3"
-                        contentEditable
-                        required
-                      />
-                      <label class="form-check-label" for="invalidCheck3">
-                        Both Vaccinations Done
-                      </label>
-                    </div>
+                  <div className="input2">
+                    <button
+                      onClick={checkAvailability}
+                      className="btn btn-outline-light"
+                    >
+                      Check Availability
+                    </button>
                   </div>
                 </div>
-
-                <button class="btn btn-primary" type="submit">
-                  Check Availability
-                </button>
-              </form>
+              </div>
             </div>
           </div>
         </div>
