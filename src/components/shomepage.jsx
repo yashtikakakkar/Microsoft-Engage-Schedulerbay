@@ -1,11 +1,15 @@
 import "./thomepage.css";
 import logo from "./logo.png";
 import firebase from "../firebase";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { Context } from "./context";
 
 let Shomepage = () => {
   const db = firebase.firestore();
+  const [suid, setSuid] = useContext(Context);
+  const navigate = useNavigate();
 
   function addSubject(e) {
     e.preventDefault();
@@ -53,6 +57,12 @@ let Shomepage = () => {
               subjects: firebase.firestore.FieldValue.arrayUnion(Name.value),
             });
 
+          db.collection("students")
+            .doc(user.email)
+            .collection("ids")
+            .doc(Name.value)
+            .set({ id: Code.value });
+
           db.collection("classes")
             .get()
             .then((snapshot) => {
@@ -67,8 +77,8 @@ let Shomepage = () => {
 
       let subjectIcon = document.createElement("div");
       subjectIcon.classList.add("class-btn");
+      subjectIcon.id = Code.value;
       subjectIcon.innerText = Name.value;
-
       div.remove();
 
       let subjectdiv = document.querySelector(".class");
@@ -77,34 +87,38 @@ let Shomepage = () => {
   }
 
   function loadSubjects(e) {
-    function renderSubject(doc) {
-      // console.log(doc.data());
-      for (let i = 0; i < doc.data().subjects.length; i++) {
-        let div = document.createElement("div");
-        div.classList.add("class-btn");
-        div.innerText = doc.data().subjects[i];
-        let grid = document.querySelector(".class");
-        grid.append(div);
-      }
-    }
-
-    db.collection("students")
-      .get()
-      .then((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-          const auth = getAuth();
-          onAuthStateChanged(auth, (user) => {
-            if (user) {
-              if (doc.id === user.email) renderSubject(doc);
-            }
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        db.collection("/students/" + user.email + "/ids")
+          .get()
+          .then((snapshot) => {
+            snapshot.docs.forEach((doc) => {
+              let subjectName = doc.id;
+              let uid = doc.data().id;
+              let div = document.createElement("div");
+              div.classList.add("class-btn");
+              div.id = uid;
+              div.innerText = subjectName;
+              let grid = document.querySelector(".class");
+              grid.append(div);
+            });
           });
-        });
-      });
+      }
+    });
   }
+
+  document.addEventListener("click", function (e) {
+    if (e.target && e.target.classList.contains("class-btn")) {
+      let myid = e.target.id;
+      setSuid(myid);
+      navigate("../subject");
+    }
+  });
 
   useEffect(() => {
     loadSubjects();
-  });
+  }, []);
 
   return (
     <>

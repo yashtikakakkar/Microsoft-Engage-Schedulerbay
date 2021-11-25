@@ -3,11 +3,13 @@ import logo from "./logo.png";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import firebase from "../firebase";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { Context } from "./context";
 
 let Class = () => {
   const db = firebase.firestore();
-  let uid = "9WiD75L6R";
+  const [tuid, setTuid] = useContext(Context);
+  const uid = tuid;
 
   const [className, setClassName] = useState("");
   const [type, setType] = useState("");

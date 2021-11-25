@@ -1,25 +1,16 @@
 import "./thomepage.css";
 import logo from "./logo.png";
 import firebase from "../firebase";
-import { useEffect, useState, setState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { v4 as uuidV4 } from "uuid";
 import shortid from "shortid";
+import { useNavigate } from "react-router";
+import { Context } from "./context";
 
 let Thomepage = () => {
   const [classId, setClassId] = useState("");
-  // const [subjectName, setSubjectName] = useState("");
-  // const [className, setClassName] = useState("");
-  // const [teacherName, setTeacherName] = useState("");
-  // const [subjectType, setSubjectType] = useState("");
-  // const [allowedCap, setAllowedCap] = useState("");
-  // const [mondayTime, setMondayTime] = useState("");
-  // const [tuesdayTime, setTuesdayTime] = useState("");
-  // const [wednesdayTime, setWednesdayTime] = useState("");
-  // const [thursdayTime, setThursdayTime] = useState("");
-  // const [fridayTime, setFridayTime] = useState("");
-  // const [saturdayTime, setSaturdayTime] = useState("");
-
+  const [tuid, setTuid] = useContext(Context);
+  const navigate = useNavigate();
   const db = firebase.firestore();
 
   function addClass(e) {
@@ -78,12 +69,6 @@ let Thomepage = () => {
       let type = document.querySelector(".class-type");
       let allowed = document.querySelector(".allowed");
 
-      // setClassName(cname.value);
-      // setSubjectName(sname.value);
-      // setSubjectType(type.value);
-      // setAllowedCap(allowed.value);
-      // console.log(className);
-
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -94,6 +79,13 @@ let Thomepage = () => {
             teacher: user.displayName,
             allowedCapacity: allowed.value,
           });
+
+          db.collection("teachers")
+            .doc(user.email)
+            .collection("ids")
+            .doc(cname.value + "-" + sname.value)
+            .set({ id: uid });
+
           db.collection("teachers")
             .doc(user.email)
             .update({
@@ -106,7 +98,7 @@ let Thomepage = () => {
       let classIcon = document.createElement("div");
       classIcon.classList.add("class-btn");
       classIcon.id = uid;
-      classIcon.innerText = cname.value;
+      classIcon.innerText = cname.value + "-" + sname.value;
 
       div.remove();
 
@@ -171,13 +163,6 @@ let Thomepage = () => {
       let fri = document.querySelector(".fri");
       let sat = document.querySelector(".sat");
 
-      // setMondayTime(mon.value);
-      // setTuesdayTime(tues.value);
-      // setWednesdayTime(wed.value);
-      // setThursdayTime(thurs.value);
-      // setFridayTime(fri.value);
-      // setSaturdayTime(sat.value);
-
       let ttBtn = document.querySelector(".tt-btn");
       ttBtn.addEventListener("click", (e) => {
         e.preventDefault();
@@ -198,64 +183,37 @@ let Thomepage = () => {
     });
   }
 
-  // useEffect(() => {
-  //   let classBtn = document.querySelector(".class-btn");
-  //   if (classBtn) {
-  //     classBtn.addEventListener("click", (e) => {
-  //       console.log("clickedbaby");
-  //     });
-  //   }
-  // });
-
-  // function renderClassPage() {
-  //   console.log("clicked babyy");
-  // }
-
   function loadClasses(e) {
-    function renderClass(doc) {
-      // console.log(doc.data());
-      for (let i = 0; i < doc.data().classes.length; i++) {
-        let div = document.createElement("div");
-        div.classList.add("class-btn");
-        div.innerText = doc.data().classes[i];
-        let grid = document.querySelector(".class");
-        grid.append(div);
-      }
-    }
-
-    db.collection("teachers")
-      .get()
-      .then((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-          const auth = getAuth();
-          onAuthStateChanged(auth, (user) => {
-            if (user) {
-              if (doc.id === user.email) renderClass(doc);
-            }
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        db.collection("/teachers/" + user.email + "/ids")
+          .get()
+          .then((snapshot) => {
+            snapshot.docs.forEach((doc) => {
+              let classSubjectName = doc.id;
+              let uid = doc.data().id;
+              let div = document.createElement("div");
+              div.classList.add("class-btn");
+              div.id = uid;
+              div.innerText = classSubjectName;
+              let grid = document.querySelector(".class");
+              grid.append(div);
+            });
           });
-        });
-      });
+      }
+    });
   }
 
   document.addEventListener("click", function (e) {
     if (e.target && e.target.classList.contains("class-btn")) {
-      console.log("clickedbb");
-
-      let ibtn = document.createElement("a");
-      ibtn.href = "./class";
-      ibtn.click();
+      let myid = e.target.id;
+      setTuid(myid);
+      navigate("../class");
     }
   });
 
   const uid = shortid.generate();
-  // setClassId(uid);
-
-  // function setUid() {
-  //   setClassId(uid);
-  //   console.log(classId);
-  // }
-
-  // setUid();
 
   useEffect(() => {
     loadClasses();
