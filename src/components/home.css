@@ -35,22 +35,22 @@
 }
 
 .nav {
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    height: 5rem;
-    width: 100%;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  height: 5rem;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 hr {
-    z-index: 10;
-    color: white;
-    width: 100%;
-    height: 1rem;
+  z-index: 10;
+  color: white;
+  width: 100%;
+  height: 1rem;
 }
 
 .spacer {
@@ -89,27 +89,32 @@ hr {
 }
 
 .logo {
-    height: 2rem;
-    margin-top: 1.5rem;
-    margin-left: 1.5rem;
+  height: 2rem;
+  margin-top: 1.5rem;
+  margin-left: 1.5rem;
 }
 
 .nav-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 4rem;
-    align-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 4rem;
+  align-content: center;
+}
+
+.sign-out {
+  width: 10%;
+  margin-top: 1.5rem;
 }
 
 .sign-in {
-    display: flex;
-    justify-content: space-around;
-    width: 20%;
-    align-items: center;
-    margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+  width: 20%;
+  align-items: center;
+  margin-top: 1.5rem;
 }
 
 .content {

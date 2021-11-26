@@ -1,50 +1,54 @@
 import "./home.css";
 import logo from "./logo.png";
 import { signInWithGoogle, auth } from "../firebase";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import firebase from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 let Home = () => {
   const [role, setRole] = useState("");
   const db = firebase.firestore();
-  let flag = true;
+  let navigate = useNavigate();
 
   useEffect(() => {
+    let flag = true;
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
-        let a = document.createElement("a");
-        if (role == "teacher") {
+        if (role === "teacher") {
           db.collection("teachers")
             .get()
             .then((snapshot) => {
               snapshot.docs.forEach((doc) => {
                 if (doc.id === user.email) {
-                  a.href = "./teacher";
-                  a.click();
-                } else {
-                  a.href = "./teacherDetails";
+                  navigate("./teacher");
+                  flag = false;
                 }
               });
             });
+
+          if (flag === true) {
+            navigate("./teacherDetails");
+          }
         }
-        if (role == "student")  {
+
+        if (role === "student") {
           db.collection("students")
             .get()
             .then((snapshot) => {
               snapshot.docs.forEach((doc) => {
                 if (doc.id === user.email) {
-                  a.href = "./student";
-                  a.click();
-                } else {
-                  a.href = "./studentDetails";
+                  navigate("./student");
+                  flag = false;
                 }
               });
             });
+
+          if (flag === true) {
+            navigate("./studentDetails");
+          }
         }
-        a.click();
       }
     });
   });
@@ -59,18 +63,6 @@ let Home = () => {
           <div className="nav-content">
             <div className="logo-div">
               <img className="logo" src={logo} alt="logo" />
-            </div>
-            <div className="sign-in">
-              Already a member?{" "}
-              <button
-                onClick={() => {
-                  signInWithGoogle();
-                }}
-                type="button"
-                class="btn btn-outline-light"
-              >
-                Sign In
-              </button>
             </div>
           </div>
           <hr />

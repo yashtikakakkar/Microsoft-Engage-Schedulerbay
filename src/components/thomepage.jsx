@@ -202,6 +202,7 @@ let Thomepage = () => {
             });
           });
       }
+      
     });
   }
 
@@ -255,6 +256,22 @@ let Thomepage = () => {
                   }}
                 >
                   Add New Class
+                </button>
+                <button
+                  onClick={() => {
+                    const auth = getAuth();
+                    onAuthStateChanged(auth, (user) => {
+                      if (user) {
+                        auth.signOut().then(() => {
+                          navigate("../");
+                        });
+                      }
+                    });
+                  }}
+                  type="button"
+                  class="btn btn-outline-light"
+                >
+                  Log out
                 </button>
               </div>
             </div>

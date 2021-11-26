@@ -34,7 +34,7 @@
 }
 
 .react-calendar__month-view__weekdays__weekday {
-    color: rgb(34, 3, 82);
+  color: rgb(34, 3, 82);
 }
 
 .class-content {
@@ -61,12 +61,12 @@
   align-items: center;
 }
 
-thead {
+.class-details thead {
   display: flex;
 }
 
-th,
-td {
+.class-details th,
+.class-details td {
   width: 15rem;
   height: 2.5rem;
   display: inline-flex;
@@ -76,15 +76,15 @@ td {
   color: white;
 }
 
-th {
+.class-details th {
   background-color: #3c009565;
 }
 
-td {
+.class-details td {
   background-color: rgba(128, 136, 252, 0.308);
 }
 
-table {
+.class-details table {
   border: rgb(215, 194, 255) solid 0.5px;
   margin: 1rem;
 }
@@ -100,5 +100,79 @@ button {
 }
 
 .react-calendar {
-    margin-top: 1rem;
+  margin-top: 1rem;
+}
+
+.list-modal {
+  width: 22%;
+  height: 70%;
+  overflow-y: auto;
+  z-index: 20;
+  background-color: rgba(255, 255, 255, 0.712);
+  border-radius: 5%;
+  color: black;
+  position: relative;
+  top: 15%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  left: 39%;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 2rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.list-inner {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+h4 {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+ol {
+  margin: 1rem;
+}
+
+li {
+  font-size: 1.25rem;
+}
+
+/* .list-modal {
+  font-size: 25px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+} */
+
+.list-modal th,
+.list-modal td {
+  width: 15rem;
+  height: 2.5rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+span {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+}
+
+h6 {
+  margin: 1.5rem;
 }

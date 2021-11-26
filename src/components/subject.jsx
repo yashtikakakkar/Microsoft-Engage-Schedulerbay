@@ -5,11 +5,13 @@ import { useEffect, useState, useContext } from "react";
 import suid from "./shomepage";
 import { Context } from "./context";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 let Subject = () => {
   const db = firebase.firestore();
   const [suid, setSuid] = useContext(Context);
   const uid = suid;
+  let navigate = useNavigate();
 
   const [className, setClassName] = useState("");
   const [allowedCap, setAllowedCap] = useState(0);
@@ -63,16 +65,6 @@ let Subject = () => {
     let given = new Date(date.value);
     let week = new Date();
     week.setDate(week.getDate() + 7);
-    
-
-    // const ref = db.collection("classes").doc(uid);
-    // ref.get().then((snapshot)=>{
-    //   if(snapshot.exists) {
-    //     ref.onSnapshot((doc)=>{
-    //       allowedCap = doc.data().allowedCapacity;
-    //     })
-    //   }
-    // })
 
     console.log(allowedCap);
 
@@ -91,80 +83,80 @@ let Subject = () => {
               (day == "fri" && fri != "") ||
               (day == "sat" && sat != "")
             ) {
-
-              db.collection("instance")
-                .doc(given)
+              let date =
+                given.getDate() +
+                "-" +
+                (given.getMonth() + 1) +
+                "-" +
+                given.getFullYear();
+              const ref = db
+                .collection("instance")
+                .doc(date)
                 .collection(uid)
-                .doc(uid)
-                .get()
-                .then((snapshot) => {
-                  if (snapshot.exists) {
-                    db.collection("instance")
-                      .doc(given)
-                      .collection(uid)
-                      .doc(uid)
-                      .onSnapshot((doc) => {
-                        let curr = doc.data().current;
-                        let allowed = doc.data().allowed;
-                        if (curr + 1 <= allowed) {
-                          alert(
-                            "Offline " +
-                              subject +
-                              " " +
-                              type +
-                              " for " +
-                              given.getDate() +
-                              "/" +
-                              given.getMonth() +
-                              "/" +
-                              given.getFullYear() +
-                              " booked successfully! Kindly bring the hard copy of vaccination certificate to allow entry on the premises."
+                .doc(uid);
+
+              ref.get().then((snapshot) => {
+                if (snapshot.exists) {
+                  ref.onSnapshot((doc) => {
+                    let curr = doc.data().current;
+                    let allowed = doc.data().allowed;
+                    let flag = false;
+
+                    for (let i = 0; i < doc.data().students.length; i++) {
+                      if (doc.data().students[i] === user.displayName) {
+                        alert("Please refrain from booking multiple slots.");
+                        flag = true;
+                      }
+                    }
+                    if (!flag) {
+                      if (curr + 1 <= allowed) {
+                        alert(
+                          "Offline " +
+                            subject +
+                            " " +
+                            type +
+                            " for " +
+                            date +
+                            " booked successfully! Kindly bring the hard copy of vaccination certificate to allow entry on the premises."
+                        );
+                        db.collection("instance")
+                          .doc(date)
+                          .collection(uid)
+                          .doc(uid)
+                          .update(
+                            {
+                              current: curr + 1,
+                              students:
+                                firebase.firestore.FieldValue.arrayUnion(
+                                  user.displayName
+                                ),
+                            },
+                            { merge: true }
                           );
-                          db.collection("instance")
-                            .doc(given)
-                            .collection(uid)
-                            .doc(uid)
-                            .update(
-                              {
-                                curr: curr + 1,
-                                students:
-                                  firebase.firestore.FieldValue.arrayUnion(
-                                    user.displayName
-                                  ),
-                              },
-                              { merge: true }
-                            );
-                        } else {
-                          alert(
-                            "Allowed capacity reached already. Kindly try again next time."
-                          );
-                        }
-                      });
-                  } else {
-                    db.collection("instance")
-                      .doc(given)
-                      .collection(uid)
-                      .doc(uid)
-                      .set({
-                        allowed: allowedCap,
-                        current: 1,
-                        students: [user.displayName],
-                      });
-                    alert(
-                      "Offline " +
-                        subject +
-                        " " +
-                        type +
-                        " for " +
-                        given.getDate() +
-                        "/" +
-                        given.getMonth() +
-                        "/" +
-                        given.getFullYear() +
-                        " booked successfully! Kindly bring the hard copy of vaccination certificate to allow entry on the premises."
-                    );
-                  }
-                });
+                      } else {
+                        alert(
+                          "Allowed capacity reached already. Kindly try again next time."
+                        );
+                      }
+                    }
+                  });
+                } else {
+                  ref.set({
+                    allowed: allowedCap,
+                    current: 1,
+                    students: [user.displayName],
+                  });
+                  alert(
+                    "Offline " +
+                      subject +
+                      " " +
+                      type +
+                      " for " +
+                      date +
+                      " booked successfully! Kindly bring the hard copy of vaccination certificate to allow entry on the premises."
+                  );
+                }
+              });
             } else {
               alert("No slot available for that day");
             }
@@ -188,6 +180,24 @@ let Subject = () => {
             <div className="nav-content">
               <div className="logo-div">
                 <img className="logo" src={logo} alt="logo" />
+              </div>
+              <div class="sign-out">
+                <button
+                  onClick={() => {
+                    const auth = getAuth();
+                    onAuthStateChanged(auth, (user) => {
+                      if (user) {
+                        auth.signOut().then(() => {
+                          navigate("../");
+                        });
+                      }
+                    });
+                  }}
+                  type="button"
+                  class="btn btn-outline-light"
+                >
+                  Log out
+                </button>
               </div>
             </div>
             <hr />

@@ -94,6 +94,7 @@ let Shomepage = () => {
           .get()
           .then((snapshot) => {
             snapshot.docs.forEach((doc) => {
+              console.log(user.email);
               let subjectName = doc.id;
               let uid = doc.data().id;
               let div = document.createElement("div");
@@ -104,7 +105,7 @@ let Shomepage = () => {
               grid.append(div);
             });
           });
-      }
+      } 
     });
   }
 
@@ -136,6 +137,22 @@ let Shomepage = () => {
                   class="btn btn-outline-light create-btn"
                 >
                   Add New Subject
+                </button>
+                <button
+                  onClick={() => {
+                    const auth = getAuth();
+                    onAuthStateChanged(auth, (user) => {
+                      if (user) {
+                        auth.signOut().then(() => {
+                          navigate("../");
+                        });
+                      }
+                    });
+                  }}
+                  type="button"
+                  class="btn btn-outline-light"
+                >
+                  Log out
                 </button>
               </div>
             </div>

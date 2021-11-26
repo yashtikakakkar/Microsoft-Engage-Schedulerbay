@@ -1,16 +1,19 @@
 import "./class.css";
 import logo from "./logo.png";
-import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import firebase from "../firebase";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, createElement } from "react";
 import { Context } from "./context";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+
+const days = ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"];
 
 let Class = () => {
   const db = firebase.firestore();
   const [tuid, setTuid] = useContext(Context);
   const uid = tuid;
-
+  let navigate = useNavigate();
   const [className, setClassName] = useState("");
   const [type, setType] = useState("");
   const [subject, setSubject] = useState("");
@@ -52,6 +55,93 @@ let Class = () => {
       });
   }, []);
 
+  function seeList() {
+    let date = document.querySelector(".date");
+    let given = new Date(date.value);
+
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        let day = days[given.getDay()];
+        if (
+          (day == "mon" && mon != "") ||
+          (day == "tues" && tues != "") ||
+          (day == "wed" && wed != "") ||
+          (day == "thurs" && thurs != "") ||
+          (day == "fri" && fri != "") ||
+          (day == "sat" && sat != "")
+        ) {
+          let date =
+            given.getDate() +
+            "-" +
+            (given.getMonth() + 1) +
+            "-" +
+            given.getFullYear();
+
+          let list = document.createElement("div");
+          list.classList.add("list-modal");
+          let innerdiv = document.createElement("div");
+          innerdiv.classList.add("list-inner");
+          let heading = document.createElement("h4");
+          heading.innerText = "List of Students";
+          // let close = document.createElement("span");
+          // close.classList.add("material-icons");
+          // close.innerText = "close";
+          // close.onclick = () => {
+          //   grid.remove(div);
+          // };
+          innerdiv.append(heading);
+          list.append(innerdiv);
+
+          let grid = document.querySelector(".inner");
+
+          const ref = db
+            .collection("instance")
+            .doc(date)
+            .collection(uid)
+            .doc(uid);
+
+          ref.get().then((snapshot) => {
+            if (snapshot.exists) {
+              ref.onSnapshot((doc) => {
+                if (doc.data().students.length === 0) {
+                  let text = document.createElement("h6");
+                  text.innerText = "No student has booked an offline seat yet.";
+                  innerdiv.append(text);
+                } else {
+                  let ol = document.createElement("ol");
+                  for (let i = 0; i < doc.data().students.length; i++) {
+                    let li = document.createElement("li");
+                    li.innerText = doc.data().students[i];
+                    ol.append(li);
+                  }
+                  innerdiv.append(ol);
+                }
+              });
+            } else {
+              let text = document.createElement("h6");
+              text.innerText = "No student has booked an offline seat yet.";
+              innerdiv.append(text);
+            }
+          });
+
+          grid.append(list);
+
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+              e.preventDefault();
+              list.remove();
+            }
+          });
+        } else {
+          alert(
+            "Please select a valid day ie when there is a class acc to Time Table."
+          );
+        }
+      }
+    });
+  }
+
   return (
     <>
       <div className="class-div">
@@ -61,9 +151,36 @@ let Class = () => {
               <div className="logo-div">
                 <img className="logo" src={logo} alt="logo" />
               </div>
+              <div class="sign-out">
+                <button
+                  onClick={() => {
+                    const auth = getAuth();
+                    onAuthStateChanged(auth, (user) => {
+                      if (user) {
+                        auth.signOut().then(() => {
+                          navigate("../");
+                        });
+                      }
+                    });
+                  }}
+                  type="button"
+                  class="btn btn-outline-light"
+                >
+                  Log out
+                </button>
+              </div>
             </div>
             <hr />
           </div>
+          {/* <div className="list-modal">
+            <div className="list-inner">
+              <h4>List of Students</h4>
+              <span class="material-icons">close</span>
+              <ol class="list">
+                <li>Yashtika Kakkar</li>
+              </ol>
+            </div>
+          </div> */}
           <div className="class-content">
             <h2>
               C L A S S &gt; {className} - {subject} {type}
@@ -103,10 +220,19 @@ let Class = () => {
                   </tr>
                 </table>
               </div>
-              <div className="calendar">
-                Choose a date to see the list of students coming for offline
-                class on that day:
-                <Calendar />
+              <div className="subject-form">
+                <div className="form-div">
+                  <h4>See the list of students attending offline mode</h4>
+                  <div className="input2">
+                    Select Date:{" "}
+                    <input class="date" type="date" placeholder="dd-mm-yyyy" />
+                  </div>
+                  <div className="input2">
+                    <button onClick={seeList} className="btn btn-outline-light">
+                      See List
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
