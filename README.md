@@ -69,14 +69,25 @@ Special Mention <br> ![Stack Overflow](https://img.shields.io/badge/-Stackoverfl
     $ git clone https://github.com/yashtikakakkar/Microsoft-Engage.git
   ```
     
- #### 2. Install Node Packages
+ #### 2. Install Node Packages and Firebase
   * Write the following command and press enter to download all required node modules.
  
    ```
    $ npm install 
   ```
   
-#### 3. Run Locally
+   ```
+   $ npm firebase 
+  ```
+  
+#### 3. Login to Firebase
+  * Credentials: 
+  ```
+  Email: cmittal305@gmail.com
+  Password: Abc@12345
+  ```
+  
+#### 4. Run Locally
 
  * While you are still inside the cloned folder, write the following command to run the website locally. 
  
