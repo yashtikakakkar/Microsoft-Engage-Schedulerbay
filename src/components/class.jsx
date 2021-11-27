@@ -2,7 +2,7 @@ import "./class.css";
 import logo from "./logo.png";
 import "react-calendar/dist/Calendar.css";
 import firebase from "../firebase";
-import { useEffect, useState, useContext, createElement } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Context } from "./context";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -158,7 +158,9 @@ let Class = () => {
                     onAuthStateChanged(auth, (user) => {
                       if (user) {
                         auth.signOut().then(() => {
-                          navigate("../");
+                          let a = document.createElement("a");
+                          a.href = "../";
+                          a.click();
                         });
                       }
                     });

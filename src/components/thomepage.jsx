@@ -263,7 +263,9 @@ let Thomepage = () => {
                     onAuthStateChanged(auth, (user) => {
                       if (user) {
                         auth.signOut().then(() => {
-                          navigate("../");
+                          let a = document.createElement("a");
+                          a.href = "../";
+                          a.click();
                         });
                       }
                     });

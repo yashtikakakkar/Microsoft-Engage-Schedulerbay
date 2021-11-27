@@ -2,7 +2,6 @@ import "./subject.css";
 import logo from "./logo.png";
 import firebase from "../firebase";
 import { useEffect, useState, useContext } from "react";
-import suid from "./shomepage";
 import { Context } from "./context";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -188,7 +187,9 @@ let Subject = () => {
                     onAuthStateChanged(auth, (user) => {
                       if (user) {
                         auth.signOut().then(() => {
-                          navigate("../");
+                          let a = document.createElement("a");
+                          a.href = "../";
+                          a.click();
                         });
                       }
                     });

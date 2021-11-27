@@ -1,6 +1,6 @@
 import "./home.css";
 import logo from "./logo.png";
-import { signInWithGoogle, auth } from "../firebase";
+import { signInWithGoogle } from "../firebase";
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import firebase from "../firebase";
@@ -49,9 +49,10 @@ let Home = () => {
             navigate("./studentDetails");
           }
         }
-      }
+      } 
     });
   });
+
 
   // let user = useContext(authContext);
 
