@@ -29,15 +29,15 @@ Agile methodology was implemented in 3 sprints, each sprint comprising of 6 days
 
 | Page | Screenshot |
 |--------------|------------|
-| Landing Page | <img height="250px" src="https://user-images.githubusercontent.com/43854410/143673101-6b8c365b-b668-48ba-92c0-ed3e0779e316.gif"> |
-| Teacher - Sign Up Page | <img height="250px" src="https://user-images.githubusercontent.com/43854410/143673561-822044ed-3610-411b-9c05-4ed21c7cffc9.png"> |
-| Teacher - HomePage | <img height="250px" src="https://user-images.githubusercontent.com/43854410/143673531-33d02781-7b43-40f1-9a45-8d1777635d8e.gif"> |
-| Teacher - Add Class Modal (with success alert) | <img height="250px" src="https://user-images.githubusercontent.com/43854410/143673624-0d0b317e-e71b-4b3d-93e2-27d56ade1d81.png"> |
-| Teacher - Class Details Page | <img height="250px" src="https://user-images.githubusercontent.com/43854410/143673578-f1de22b3-d22a-42e1-8815-03ba72fd44de.png"> |
-| Student - Sign Up Page | <img height="250px" src="https://user-images.githubusercontent.com/43854410/143673973-cb52a415-ab61-4baf-8354-ea13a8d40477.png"> |
-| Student - HomePage | <img height="250px" src="https://user-images.githubusercontent.com/43854410/143674023-a8a9cbc2-5bcd-48bb-a188-b5e5df1faa56.png"> |
-| Student - Add Subject Modal | <img height="250px" src="https://user-images.githubusercontent.com/43854410/143673929-379f9300-9455-44c8-9bfd-fb7bcdd404bd.png"> |
-| Student - Subject Details Page ** | <img height="250px" src="https://user-images.githubusercontent.com/43854410/143674384-b413f3c0-f2e7-4e35-bc05-0c75cbd90c17.gif"> |
+| Landing Page | <img height="240px" src="https://user-images.githubusercontent.com/43854410/143673101-6b8c365b-b668-48ba-92c0-ed3e0779e316.gif"> |
+| Teacher - Sign Up Page | <img height="240px" src="https://user-images.githubusercontent.com/43854410/143673561-822044ed-3610-411b-9c05-4ed21c7cffc9.png"> |
+| Teacher - HomePage | <img height="240px" src="https://user-images.githubusercontent.com/43854410/143673531-33d02781-7b43-40f1-9a45-8d1777635d8e.gif"> |
+| Teacher - Add Class Modal (with success alert) | <img height="240px" src="https://user-images.githubusercontent.com/43854410/143673624-0d0b317e-e71b-4b3d-93e2-27d56ade1d81.png"> |
+| Teacher - Class Details Page | <img height="240px" src="https://user-images.githubusercontent.com/43854410/143673578-f1de22b3-d22a-42e1-8815-03ba72fd44de.png"> |
+| Student - Sign Up Page | <img height="240px" src="https://user-images.githubusercontent.com/43854410/143673973-cb52a415-ab61-4baf-8354-ea13a8d40477.png"> |
+| Student - HomePage | <img height="240px" src="https://user-images.githubusercontent.com/43854410/143674023-a8a9cbc2-5bcd-48bb-a188-b5e5df1faa56.png"> |
+| Student - Add Subject Modal | <img height="240px" src="https://user-images.githubusercontent.com/43854410/143673929-379f9300-9455-44c8-9bfd-fb7bcdd404bd.png"> |
+| Student - Subject Details Page ** | <img height="240px" src="https://user-images.githubusercontent.com/43854410/143674384-b413f3c0-f2e7-4e35-bc05-0c75cbd90c17.gif"> |
 
 ** Use Cases for booking an offline class slot:
 - If student selects correct date where there is a class and is fully vaccinated -> Success confirmation alert
