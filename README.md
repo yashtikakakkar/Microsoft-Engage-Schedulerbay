@@ -5,20 +5,23 @@
 ### 🚩 Overview
 
 #### ‣ Problem Statement
+<p align="justify">
 
 Build a functional prototype of a platform that gives students an array of digital academic and social tools to stay engaged with their studies, peers and broader university community during pandemic.
 
 #### ‣ Proposed Solution
-
-A Scheduler Application to bring hybrid mode of classes to life. With the ease in restrictions wrt Covid-19, many organizations have started to implement hybrid mode of classes which allows a certain number of students to attend classes in offline mode. This webapp helps in organizing the same by allowing students to submit weekly preferences for attending classes in offline mode. The seat allocation done on FCFS basis, will eventually provide a roster of students attending in offline mode to the faculty. <br>
-This project has been solely built during the period of **Microsoft Engage'21 Mentorship Program** _conducted by Microsoft_ from the period of 8th November 2021 to 26th November 2021.
+<p align="justify">
+A Scheduler Application to bring hybrid mode of classes to life. With the ease in restrictions wrt Covid-19, many organizations have started to implement hybrid mode of classes which allows a certain number of students to attend classes in offline mode. This webapp helps in organizing the same by allowing students to submit weekly preferences for attending classes in offline mode. The seat allocation done on FCFS basis, will eventually provide a roster of students attending in offline mode to the faculty. <br><br>
+This project has been solely built during the period of <b>Microsoft Engage'21 Mentorship Program</b> <i>conducted by Microsoft</i> from the period of 8th November 2021 to 26th November 2021.
+</p>
 
 #### ‣ Live Link: https://schedulerbay.netlify.app/
 
 ### 🚩 Agile Methodology and Workflow
-
+<p align="justify">
 Agile methodology was implemented in 3 sprints, each sprint comprising of 6 days/week for 3 weeks. The intent of the project, to help teachers and students, their viewpoints and easy to use interface built were kept in mind during the development of this project. The web application has been hosted on Netlify.
-
+</p>
+  
 | Week | Phase | Tasks | Status |
 |------|-------|-------|--------|
 |1   | **Design & Planning** | <ul><li>Explored different ideas keeping uniqueness and timeline in mind.</li><li>Decided upon the tech-stack to be used.</li><li>Implemented UI layouts of all the pages.</li><li>Planned the feature flow of the project.</li></ul> | Completed |
