@@ -2,7 +2,7 @@
 
 <h3 align="center"> Microsoft Engage'21 Submission by Yashtika Kakkar</h3>
 
-### 🚩 Overview
+### ☄️ Overview
 
 #### ‣ Problem Statement
 <p align="justify">
@@ -17,18 +17,18 @@ This project has been solely built during the period of <b>Microsoft Engage'21 M
 
 #### ‣ Live Link: https://schedulerbay.netlify.app/
 
-### 🚩 Agile Methodology and Workflow
+### ☄️ Agile Methodology and Workflow
 <p align="justify">
-Agile methodology was implemented in 3 sprints, each sprint comprising of 6 days/week for 3 weeks. The intent of the project, to help teachers and students, their viewpoints and easy to use interface built were kept in mind during the development of this project. The web application has been hosted on Netlify.
+Agile methodology was implemented in 3 sprints, each sprint comprising of 6 days/week for 3 weeks. The intent of the project, to help teachers and students, their viewpoints and easy to use interface build were kept in mind during the development of this project. The web application has been hosted on Netlify.
 </p>
   
 | Week | Phase | Tasks | Status |
 |------|-------|-------|--------|
 |1   | **Design & Planning** | <ul><li>Explored different ideas keeping uniqueness and timeline in mind.</li><li>Decided upon the tech-stack to be used.</li><li>Implemented UI layouts of all the pages.</li><li>Planned the feature flow of the project.</li></ul> | Completed |
 |2   | **Implementation** | <ul><li>Implemented Sign In/Sign Out feature using Auth in Firebase.</li><li>Structured the collections in Firestore.</li><li>Implemented Class addition by Teacher and create a Join Class code.</li><li>Implemented Subject addition by Student using the same Join Class code.</li></ul> | Completed |
-|3   | **Implementation contd, Testing & Deployment** | <ul><li>Implemented booking an offline seat functionality for Student.</li><li>Implemented fetching and displaying of list of students attending offline class to the Teacher.</li><li>Testing on multiple use cases. (Bugs Fixed)</li><li>Deployed Schedulerbay using Netlify.</li></ul> | Completed |
+|3   | **Implementation contd, Testing & Deployment** | <ul><li>Implemented booking an offline seat functionality for Student.</li><li>Implemented fetching and displaying of list of students attending offline class to the Teacher.</li><li>Tested on multiple use cases. (Bugs Fixed)</li><li>Deployed Schedulerbay using Netlify.</li></ul> | Completed |
   
-### 🚩 Project Screenshots
+### ☄️ Project Screenshots
 
 | Page | Screenshot |
 |--------------|------------|
@@ -49,7 +49,7 @@ Agile methodology was implemented in 3 sprints, each sprint comprising of 6 days
 - If student selects wrong date outside the week -> Request to select a date within the week alert
 - If student attempts to book multiple slots for same date and class -> Refrain from booking multiple slots alert
 
-### 🚩 Tech-Stack Used
+### ☄️ Tech-Stack Used
 
 Design <br> ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) <br><br>
 Languages <br> ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) <br><br>
@@ -58,7 +58,7 @@ BackEnd <br> ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?sty
 Hosting <br> ![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7) <br><br>
 Special Mention <br> ![Stack Overflow](https://img.shields.io/badge/-Stackoverflow-FE7A16?style=for-the-badge&logo=stack-overflow&logoColor=white)
 
-### 🚩 Installation Setup
+### ☄️ Installation Setup
 
 #### 1. Clone the App
   
@@ -66,7 +66,7 @@ Special Mention <br> ![Stack Overflow](https://img.shields.io/badge/-Stackoverfl
   * Write the following command and press enter:
   
   ```
-    $ git clone https://github.com/yashtikakakkar/Microsoft-Engage.git
+    $ git clone https://github.com/yashtikakakkar/Microsoft-Engage-Schedulerbay.git
   ```
     
  #### 2. Install Required Packages
@@ -100,9 +100,9 @@ Special Mention <br> ![Stack Overflow](https://img.shields.io/badge/-Stackoverfl
    $ npm start
  ```
 
-### 🚩 End Notes
+### ☄️ EndNote
 
-These 3 weeks turned out to have a very steep learning curve for me. I would like to thank my mentor for their constant support and help during the program, and to <a href="https://github.com/microsoft">Microsoft</a> for providing students with an enriching program such as this!
+These 3 weeks turned out to have a very steep learning curve for me for which I am super grateful. I would like to thank my mentor for their constant support and guidance during the entire program, and to <a href="https://github.com/microsoft">Microsoft</a> for providing students with an enriching opportunity such as this!
 
 <br>
 <h4 align="center"> Developed by <a href="https://github.com/yashtikakakkar">Yashtika Kakkar</a> With ❤️ </h3>
