@@ -1,6 +1,6 @@
-# SchedulerBay Application
+<h1 align="center"> SchedulerBay Application </h1>
 
-## Microsoft Engage'21 Submission
+<h3 align="center"> Microsoft Engage'21 Submission by Yashtika Kakkar</h3>
 
 ### 🚩 Overview
 
