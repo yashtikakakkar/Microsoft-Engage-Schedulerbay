@@ -86,7 +86,7 @@ Special Mention <br> ![Stack Overflow](https://img.shields.io/badge/-Stackoverfl
 
 ### 🚩 End Notes
 
-These 3 weeks turned out to have a very steep learning curve for me. I would like to thank my mentor for their utmost support and help during the program and to <a href="https://github.com/microsoft">Microsoft</a> for providing students with an enriching program such as this!
+These 3 weeks turned out to have a very steep learning curve for me. I would like to thank my mentor for their utmost support and help during the program, and to <a href="https://github.com/microsoft">Microsoft</a> for providing students with an enriching program such as this!
 
 <br>
 <h4 align="center"> Developed by <a href="https://github.com/yashtikakakkar">Yashtika Kakkar</a> With ❤️ </h3>
