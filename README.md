@@ -69,16 +69,21 @@ Special Mention <br> ![Stack Overflow](https://img.shields.io/badge/-Stackoverfl
     $ git clone https://github.com/yashtikakakkar/Microsoft-Engage.git
   ```
     
- #### 2. Install Node Packages and Firebase
-  * Write the following command and press enter to download all required node modules.
+ #### 2. Install Required Packages
+  * Write the following commands and press enter to download all required modules.
  
    ```
    $ npm install 
   ```
-  
    ```
-   $ npm firebase 
+   $ npm i react react-router-dom react-dom 
   ```
+   ```
+   $ npm i firebase
+   ```
+   ```
+   $ npm i shortid
+   ```
   
 #### 3. Login to Firebase
   * Credentials: 
