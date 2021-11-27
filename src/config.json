@@ -1,8 +1,8 @@
 {
-    "apiKey": "AIzaSyDH73xKzvRpMSWuSMWqBeW21nlAsgXwplQ",
-    "authDomain": "schedulerbay-test.firebaseapp.com",
-    "projectId": "schedulerbay-test",
-    "storageBucket": "schedulerbay-test.appspot.com",
-    "messagingSenderId": "781681361019",
-    "appId": "1:781681361019:web:dbe62017c41dbe9454a2de"
-  }
+  "apiKey": "AIzaSyAQAja-g1ytUUTrfmPXbQkXX5qBMurhFHo",
+  "authDomain": "schedulerbay.firebaseapp.com",
+  "projectId": "schedulerbay",
+  "storageBucket": "schedulerbay.appspot.com",
+  "messagingSenderId": "778796200476",
+  "appId": "1:778796200476:web:99633aa51ef77397a725d9"
+}
