@@ -24,7 +24,7 @@ Agile methodology was implemented in 3 sprints, each sprint comprising of 6 days
   
 | Week | Phase | Tasks | Status |
 |------|-------|-------|--------|
-|1   | **Design & Planning** | <ul><li>Explored different ideas keeping uniqueness and timeline in mind.</li><li>Decided upon the tech-stack to be used.</li><li>Implemented UI layouts of all the pages.</li><li>Planned the feature flow of the project.</li></ul> | Completed |
+|1   | **Design & Planning** | <ul><li>Explored different ideas keeping uniqueness and timeline in mind.</li><li>Decided upon the tech-stack to be used.</li><li>Implemented UI layouts of all the pages from scratch. (Templates were not used to cater to the uniqueness of the project)</li><li>Planned the feature flow of the project.</li></ul> | Completed |
 |2   | **Implementation** | <ul><li>Implemented Sign In/Sign Out feature using Auth in Firebase.</li><li>Structured the collections in Firestore.</li><li>Implemented Class addition by Teacher and create a Join Class code.</li><li>Implemented Subject addition by Student using the same Join Class code.</li></ul> | Completed |
 |3   | **Implementation contd, Testing & Deployment** | <ul><li>Implemented booking an offline seat functionality for Student.</li><li>Implemented fetching and displaying of list of students attending offline class to the Teacher.</li><li>Tested on multiple use cases. (Bugs Fixed)</li><li>Deployed Schedulerbay using Netlify.</li></ul> | Completed |
   
@@ -43,6 +43,7 @@ Agile methodology was implemented in 3 sprints, each sprint comprising of 6 days
 | Student - Subject Details Page ** | <img height="240px" src="https://user-images.githubusercontent.com/43854410/143674384-b413f3c0-f2e7-4e35-bc05-0c75cbd90c17.gif"> |
 
 ** Use Cases for booking an offline class slot:
+- The number of allowed students limit provided by the teacher is never exceeded.
 - If student selects correct date where there is a class and is fully vaccinated -> Success confirmation alert
 - If student selects correct date where there is a class but isn't vaccinated -> Vaccination required alert
 - If student selects wrong date where there is no class OR the allowed limit of students has reached already -> No slots available alert
