@@ -39,7 +39,7 @@ Agile methodology was implemented in 3 sprints, each sprint comprising of 6 days
 | Teacher - Class Details Page <ul><li> User can view the class details<br> fetched from the database </li><li> They can also view the roster of<br> students attending offline class by <br>selecting a particular date </li></ul> | <img height="240px" src="https://user-images.githubusercontent.com/43854410/143673578-f1de22b3-d22a-42e1-8815-03ba72fd44de.png"> |
 | Student - Sign Up Page | <img height="240px" src="https://user-images.githubusercontent.com/43854410/143673973-cb52a415-ab61-4baf-8354-ea13a8d40477.png"> |
 | Student - HomePage <ul><li> User can access different subjects </li><li> User can add new subjects </li></ul> | <img height="240px" src="https://user-images.githubusercontent.com/43854410/143674023-a8a9cbc2-5bcd-48bb-a188-b5e5df1faa56.png"> |
-| Student - Add Subject Modal <ul><li> User can add a new subject by<br> using the joining code provided by the<br> teacher </li></ul> | <img height="240px" src="https://user-images.githubusercontent.com/43854410/143673929-379f9300-9455-44c8-9bfd-fb7bcdd404bd.png"> |
+| Student - Add Subject Modal <ul><li> User can add a new subject by<br> using the joining code provided by<br> the teacher </li></ul> | <img height="240px" src="https://user-images.githubusercontent.com/43854410/143673929-379f9300-9455-44c8-9bfd-fb7bcdd404bd.png"> |
 | Student - Subject Details Page <ul><li> User can view the subject details<br> fetched from the database </li><li> User can book an offline class slot<br> based on appropriate filters ** </li></ul>| <img height="240px" src="https://user-images.githubusercontent.com/43854410/143674384-b413f3c0-f2e7-4e35-bc05-0c75cbd90c17.gif"> |
 
 ** Use Cases for booking an offline class slot:
