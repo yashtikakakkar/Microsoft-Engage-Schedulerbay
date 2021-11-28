@@ -6,6 +6,10 @@ import config from "./config.json";
 
 firebase.initializeApp(config);
 
+// credentials for firebase:
+// email: cmittal305@gmail.com
+// password: Abc@12345
+
 let provider = new firebase.auth.GoogleAuthProvider();
 
 export const auth = firebase.auth();
