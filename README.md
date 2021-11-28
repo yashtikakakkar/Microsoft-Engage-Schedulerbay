@@ -46,8 +46,8 @@ Agile methodology was implemented in 3 sprints, each sprint comprising of 6 days
 - The number of allowed students limit provided by the teacher is never exceeded.
 - If student selects correct date where there is a class and is fully vaccinated -> Success confirmation alert
 - If student selects correct date where there is a class but isn't vaccinated -> Vaccination required alert
-- If student selects wrong date where there is no class OR the allowed limit of students has reached already -> No slots available alert
-- If student selects wrong date outside the week -> Request to select a date within the week alert
+- If student selects a wrong date where there is no class OR the allowed limit of students has reached already -> No slots available alert
+- If student selects a date outside the week -> Request to select a date within the week alert
 - If student attempts to book multiple slots for same date and class -> Refrain from booking multiple slots alert
 
 ### ☄️ Tech-Stack Used
