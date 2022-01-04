@@ -72,7 +72,7 @@ let Home = () => {
           <div className="image">
             <img
               className="descImage"
-              src="https://microsoft.acehacker.com/fte2021/img/demo-content/images/scheduler.png"
+              src="https://user-images.githubusercontent.com/43854410/148027737-23eb2652-eb3a-425d-b3c2-cb102e40c4c5.png"
               alt="desc image"
             />
           </div>
